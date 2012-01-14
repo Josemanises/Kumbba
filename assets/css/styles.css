@@ -1,0 +1,42 @@
+.small{
+    font-size: 10px;
+}
+
+body{
+    /*
+	background-image: url('./images/background.jpg');
+	background-repeat: no-repeat;
+    */
+    background-color:#ff9933;
+}
+
+.container{
+    background-image: url('./images/barrita.gif');
+    background-repeat: repeat-y;    
+    background-color: white;
+}
+
+.container{
+    padding-left: 12px;
+}
+
+.header{
+    background-color: white;    
+}
+
+.notification{
+    padding: 12px;
+    border: 1px solid #A30021;
+    background-color: #FFD9E1;
+    width: 540px;
+}
+
+
+table {  border-collapse: collapse; }
+td, th { 
+   text-align: center; 
+   border: 1px solid #ddd; 
+   padding:2px 5px; 
+   }
+   
+caption {margin: 0 0 .5em; font-weight: bold; }
