@@ -52,9 +52,10 @@ class Unirsemodel extends CI_Model
     public function validarUsuario( $nombre = '', $pass = '')
     {
     
-        $this->db->where("nombre", $nombre);
-        $this->db->where("pass", $pass);
-        $query = $this->db->get("usuarios");
+        $this->db->where('nombre', $nombre)
+	     ->where('pass', $pass);
+	
+        $query = $this->db->get('usuarios');
         
         if ($query->num_rows() > 0){	
         

@@ -20,35 +20,31 @@ class Unirse extends Kumbba_Controller
     {
 	if ( !empty( $_POST['enviar']) ) {
 	    
-	    $this->_checkRequiredUserData($_POST);
-		
-	    if ( $this->unirsemodel->insertar($_POST) == 'nombreIncorrecto') {
-		$this->session->set_flashdata('mensaje', 'El nombre ya está en uso, por favor selecciona otro.');
-		redirect('/unirse/index', 'refresh'); 
-	    } else {
-		$this->session->set_flashdata('mensaje', '¡Tu cuenta se ha creado correctamente!');
-		$this->emailmodel->enviarEmailAviso( $_POST['nombre']);
-		redirect('/unirse/index', 'refresh'); 			
-	    }
+	    $this->load->library('form_validation');
+	    
+	    $this->form_validation->set_rules('nombre', 'nombre', 'required');
+	    $this->form_validation->set_rules('pass', 'clave', 'required');	
+	    
+	    $this->form_validation->set_message('required', 'El campo %s es obligatorio');
+	    
+	    if ($this->form_validation->run()) {
+
+		if ( $this->unirsemodel->insertar($_POST) == 'nombreIncorrecto') {
+		    $this->session->set_flashdata('mensaje', 'El nombre ya está en uso, por favor selecciona otro.');
+		    redirect('/unirse/index', 'refresh'); 
+		} else {
+		    $this->session->set_flashdata('mensaje', '¡Tu cuenta se ha creado correctamente!');
+		    $this->emailmodel->enviarEmailAviso( $_POST['nombre']);
+		    redirect('/unirse/index', 'refresh'); 			
+		}
+
+	    }	    
+	    
 	}
 	
 	$this->_render('unirse');
     }
-    
-    /**
-     * Método que comprueba si recibimos todos los datos necesarios para crear
-     * la nueva cuenta
-     * 
-     * @param array $data Array containing user 'nombre' y 'pass'
-     */
-    private function _checkRequiredUserData( $data = array() )
-    {
-	if ( empty($data['nombre']) || empty($data['pass']) || $data['nombre'] == '' || $data['pass'] == '') {
-	    $this->session->set_flashdata('mensaje', 'Debes insertar un nombre y una clave');
-	    redirect('/unirse/index', 'refresh'); 		
-	}	
-    }
-    
+        
     /**
      * Validamos un usuario
      */

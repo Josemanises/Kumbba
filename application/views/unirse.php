@@ -13,18 +13,20 @@
 	Solo debes elegir un <strong>nombre</strong>, que será el que aparezca en tus mensajes. 
 	Y una <strong>clave</strong>, con la que podremos saber que eres tú. No necesitamos tu correo ni ningún dato personal, pero <strong>recuerda</strong>, no olvides la clave.
     </p>
-	<?php
-	    echo form_open('unirse/index');
-	?>
-	    <label>Nombre:</label>
-	    <input type="text" name="nombre" value=""/>
-
-	    <label>Clave ( No utilices contraseñas que utilices para otras cosas ):</label>
-	    <input type="text" name="pass" value=""/> 
-
-	    <input type="submit" value="Enviar" name="enviar" />
-
-	<?php
-	    echo form_close();
-	?>
+    
+    <?php	
+	echo form_open('unirse/index');
+	
+	echo form_label('Nombre:', 'nombre');
+	echo form_input('nombre', set_value('nombre'));
+	echo form_error('nombre', '<div style="color: red; margin-bottom: 10px;">', '</div>'); 
+	
+	echo form_label('Clave ( No utilices contraseñas que utilices para otras cosas ):','pass');
+	echo form_password('pass', set_value('pass'));
+	echo form_error('pass', '<div style="color: red; margin-bottom: 10px;">', '</div>');
+	
+	echo form_submit('enviar','Enviar');
+	
+	echo form_close();
+    ?>
 </div>

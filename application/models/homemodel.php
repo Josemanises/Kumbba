@@ -9,7 +9,7 @@ class Homemodel extends CI_Model
     /**
      * Obtenemos el nombre de usuario a través del password
      * 
-     * @param string $pass
+     * @param int $id
      * @return string 
      */
     public function obtenerNombre( $id = '' ) 
